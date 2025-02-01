@@ -5,22 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.fefu.myapplication.databinding.FragmentActiveListPersonalBinding
+import ru.fefu.myapplication.databinding.FragmentDetailBinding
 
 
-class ActiveListPersonalFragment : Fragment() {
-    private lateinit var binding: FragmentActiveListPersonalBinding
+class DetailFragment : Fragment() {
+    private lateinit var binding: FragmentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentActiveListPersonalBinding.inflate(inflater, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        binding.backBtn.setOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
         return binding.root
     }
 
     companion object {
-        fun newInstance() = ActiveListPersonalFragment()
+        @JvmStatic
+        fun newInstance() = DetailFragment()
     }
 }

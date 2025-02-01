@@ -11,18 +11,19 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        if (savedInstanceState == null) {
+        setContentView(binding.root)
+        if (savedInstanceState == null) { // Prevent duplicate fragment addition
             supportFragmentManager.beginTransaction().apply {
                 add(
                     R.id.fragmentContainerView,
                     ActiveFragment.newInstance(),
                     "Active tag"
                 )
-                addToBackStack("tag name")
+                addToBackStack("add tag")
                 commit()
             }
         }
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             val activeFragment = supportFragmentManager.findFragmentByTag("Active tag")
             val profileFragment = supportFragmentManager.findFragmentByTag("Profile tag")
@@ -46,6 +47,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                             commit()
                         }
                     }
+                    else {
+                        supportFragmentManager.beginTransaction().attach(activeFragment).commit()
+                    }
                 }
                 R.id.profile -> {
                     if (activeFragment != null) {
@@ -66,10 +70,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                             commit()
                         }
                     }
+                    else {
+                        supportFragmentManager.beginTransaction().attach(profileFragment).commit()
+                    }
                 }
             }
             true
         }
-        setContentView(binding.root)
+
     }
+
 }

@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.fefu.myapplication.databinding.FragmentActiveListBinding
+import ru.fefu.myapplication.databinding.FragmentActiveListPersonalBinding
 
 
-class ActiveListFragment : Fragment() {
-    private lateinit var binding: FragmentActiveListBinding
+class ActiveListUsersFragment : Fragment() {
+    private lateinit var binding: FragmentActiveListPersonalBinding
 
-    private val activeAdapter = ActiveAdapter(activeListPersonal)
+    private val activeAdapter = ActiveAdapter(activeListTotal)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentActiveListBinding.inflate(layoutInflater, container, false)
+        binding = FragmentActiveListPersonalBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -30,11 +30,11 @@ class ActiveListFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        activeAdapter.setItemClickListener {
+        activeAdapter.setItemClickListener{
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(
                     R.id.window,
-                    DetailFragment.newInstance()
+                    DetailOtherFragment.newInstance()
                 )
                 addToBackStack("detail")
                 commit()
@@ -44,8 +44,6 @@ class ActiveListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(): Fragment {
-            return ActiveListFragment()
-        }
+        fun newInstance() = ActiveListUsersFragment()
     }
 }

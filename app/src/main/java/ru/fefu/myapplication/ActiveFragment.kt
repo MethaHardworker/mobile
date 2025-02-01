@@ -13,12 +13,12 @@ import ru.fefu.myapplication.databinding.FragmentActiveBinding
 class ActiveFragment : Fragment() {
     private val fragList = listOf(
         ActiveListFragment.newInstance(),
-        ActiveListPersonalFragment.newInstance(),
+        ActiveListUsersFragment.newInstance(),
     )
 
     private val titles = listOf(
-        getString(R.string.personal),
-        getString(R.string.all),
+        activity?.getString(R.string.personal),
+        activity?.getString(R.string.all),
     )
 
     private lateinit var binding: FragmentActiveBinding
@@ -34,10 +34,15 @@ class ActiveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        val adapter = ViewPagerAdapter(this)
         val adapter = VPAdapter(activity as AppCompatActivity, fragList)
         binding.vp2.adapter = adapter
         TabLayoutMediator(binding.tb, binding.vp2) {
-                tab, pos -> tab.text = titles[pos]
+                tab, pos ->  // tab.text = titles[pos]
+            when(pos) {
+                0 -> tab.text = getString(R.string.personal)
+                1 -> tab.text = getString(R.string.all)
+            }
         }.attach()
     }
 
