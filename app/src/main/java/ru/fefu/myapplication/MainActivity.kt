@@ -2,6 +2,7 @@ package ru.fefu.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.fefu.myapplication.active.ActiveFragment
 import ru.fefu.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 ActiveFragment.newInstance(),
                                 "Active tag"
                             )
-                            addToBackStack("tag name")
+                            addToBackStack("active tag name")
                             commit()
                         }
                     }
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 ProfileFragment.newInstance(),
                                 "Profile tag"
                             )
-                            addToBackStack("tag name")
+                            addToBackStack("profile tag name")
                             commit()
                         }
                     }

@@ -1,5 +1,6 @@
-package ru.fefu.myapplication
+package ru.fefu.myapplication.active
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import ru.fefu.myapplication.R
+import ru.fefu.myapplication.StartActivity
+import ru.fefu.myapplication.VPAdapter
 import ru.fefu.myapplication.databinding.FragmentActiveBinding
 
 
@@ -44,6 +48,10 @@ class ActiveFragment : Fragment() {
                 1 -> tab.text = getString(R.string.all)
             }
         }.attach()
+        binding.playButton.setOnClickListener {
+            val intent = Intent(context, StartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {

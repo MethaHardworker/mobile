@@ -1,9 +1,10 @@
-package ru.fefu.myapplication
+package ru.fefu.myapplication.active
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.fefu.myapplication.R
 import ru.fefu.myapplication.databinding.ActiveItemBinding
 import ru.fefu.myapplication.databinding.DividerItemBinding
 import java.text.SimpleDateFormat

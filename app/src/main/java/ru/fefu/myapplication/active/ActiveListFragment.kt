@@ -1,4 +1,4 @@
-package ru.fefu.myapplication
+package ru.fefu.myapplication.active
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.fefu.myapplication.DetailFragment
+import ru.fefu.myapplication.R
 import ru.fefu.myapplication.databinding.FragmentActiveListBinding
 
 
@@ -32,9 +34,10 @@ class ActiveListFragment : Fragment() {
 
         activeAdapter.setItemClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.apply {
-                replace(
-                    R.id.window,
-                    DetailFragment.newInstance()
+                add(
+                    R.id.fragmentContainerView,
+                    DetailFragment.newInstance(),
+                    "Detail tag"
                 )
                 addToBackStack("detail")
                 commit()

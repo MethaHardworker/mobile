@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import ru.fefu.myapplication.active.ActiveListFragment
+import ru.fefu.myapplication.active.ActiveListUsersFragment
 
 class VPAdapter(fa : FragmentActivity, private val list: List<Fragment>) : FragmentStateAdapter(fa) {
     override fun getItemCount(): Int {

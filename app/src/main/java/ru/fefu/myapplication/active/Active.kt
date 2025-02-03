@@ -1,4 +1,4 @@
-package ru.fefu.myapplication
+package ru.fefu.myapplication.active
 
 
 import java.util.ArrayList
@@ -7,7 +7,7 @@ import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-open class Content()
+open class Content
 data class Active(val distance: Int, val duration: Duration, val activity: String, val date: Date, val user: String?) : Content()
 data class Divider(val date: Date) : Content()
 

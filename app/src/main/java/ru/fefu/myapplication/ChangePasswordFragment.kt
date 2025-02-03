@@ -5,22 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.fefu.myapplication.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+class ChangePasswordFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_change_password, container, false)
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = ProfileFragment()
-    }
 
+        @JvmStatic
+        fun newInstance() = ChangePasswordFragment()
+    }
 }

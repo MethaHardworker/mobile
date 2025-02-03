@@ -5,7 +5,7 @@
     android:id="@+id/window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActiveFragment">
+    tools:context=".active.ActiveFragment">
 
 
     <com.google.android.material.tabs.TabLayout
@@ -35,8 +35,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb">
+        app:layout_constraintTop_toBottomOf="@+id/tb"/>
 
-    </androidx.viewpager2.widget.ViewPager2>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/baseline_play_arrow_24"
+        app:borderWidth="0dp"
+        app:shapeAppearanceOverlay="@style/FabStyle"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="Запустить активность"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
