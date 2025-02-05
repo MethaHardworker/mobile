@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.fefu.myapplication.DetailFragment
 import ru.fefu.myapplication.R
+import ru.fefu.myapplication.database.Dap.db
 import ru.fefu.myapplication.databinding.FragmentActiveListBinding
 
 
@@ -30,6 +31,10 @@ class ActiveListFragment : Fragment() {
         with(binding.recyclerView) {
             adapter = activeAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        db.activeDao().getAllActives().observe(viewLifecycleOwner) {
+            activeAdapter.submitList(it)
         }
 
         activeAdapter.setItemClickListener {

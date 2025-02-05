@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.fefu.myapplication.active.ActiveTypeAdapter
+import ru.fefu.myapplication.active.Active
+import ru.fefu.myapplication.database.Dap.db
 
 import ru.fefu.myapplication.databinding.FragmentNewActiveBinding
+import java.util.Date
 
 class NewActiveFragment : Fragment() {
 
@@ -34,12 +37,19 @@ class NewActiveFragment : Fragment() {
 
         }
         binding.btnStart.setOnClickListener {
+
+            db.activeDao().insert(Active(
+                0,
+                activeTypeAdapter.chosenTitle,
+                Date(),
+                Date(2025-1900,2, 10)
+            ))
             val currentFragment = activity?.supportFragmentManager?.findFragmentByTag("replace tag")?.id
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 if (currentFragment != null) {
                     replace(
                         currentFragment,
-                        NewActiveStartedFragment.newInstance(activeTypeAdapter.chosenTitle),
+                        NewActiveStartedFragment.newInstance(activeTypeAdapter.chosenTitle.typeName),
                         "replace tag"
                     )
                 }

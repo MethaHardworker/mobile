@@ -10,20 +10,22 @@ import ru.fefu.myapplication.databinding.ActiveTypeItemBinding
 
 fun Int.dpToPx(cntxt: Context): Int = (this * cntxt.resources.displayMetrics.density).toInt()
 
+
+
 class ActiveTypeAdapter: RecyclerView.Adapter<ActiveTypeAdapter.ActiveTypeHolder>() {
     private var selectedPos = RecyclerView.NO_POSITION
-    lateinit var chosenTitle: String
+    lateinit var chosenTitle: EnumActiveTypes
     private var mutableActiveTypes: ArrayList<ActiveType> = arrayListOf(
-        ActiveType("Велосипед", R.drawable.ic_registration_bicycles),
-        ActiveType("Бег", R.drawable.ic_registration_bicycles),
-        ActiveType("Шаг", R.drawable.ic_registration_bicycles),
+        ActiveType(EnumActiveTypes.Bike, R.drawable.ic_registration_bicycles),
+        ActiveType(EnumActiveTypes.Run, R.drawable.ic_registration_bicycles),
+        ActiveType(EnumActiveTypes.Walk, R.drawable.ic_registration_bicycles),
     )
 
 
     inner class ActiveTypeHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = ActiveTypeItemBinding.bind(item)
         fun bind(activeType: ActiveType) = with(binding) {
-            activeTypeName.text = activeType.name
+            activeTypeName.text = activeType.name.typeName
             activeTypePic.setImageResource(activeType.picture)
         }
 

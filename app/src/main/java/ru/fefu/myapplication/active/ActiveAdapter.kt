@@ -10,6 +10,8 @@ import ru.fefu.myapplication.databinding.DividerItemBinding
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Locale
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class ActiveAdapter (
     activeList: ArrayList<Content>
@@ -28,15 +30,15 @@ class ActiveAdapter (
     inner class ActiveHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ActiveItemBinding.bind(item)
         fun bind(activity: Active) = with(binding) {
-            val dist = if (activity.distance > 1000)
-                String.format(Locale.getDefault(), "%.2f", activity.distance.toFloat() / 1000) + "км" else
-                activity.distance.toString() + " м"
+            val dist = "231 м"
             distance.text = dist
-            duration.text = activity.duration.toString()
-            active.text = activity.activity
-            user.text = activity.user
+            duration.text = String.format(
+                Locale.ENGLISH,
+                (activity.endDate.time - activity.startDate.time).toDuration(DurationUnit.MILLISECONDS).inWholeMinutes.toString())
+            active.text = activity.activity.typeName
+            user.text = null
             val simpleDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            val strDt: String = simpleDate.format(activity.date)
+            val strDt: String = simpleDate.format(activity.startDate)
             whenDid.text = strDt
         }
 
@@ -92,5 +94,13 @@ class ActiveAdapter (
          mutableActives.add(active)
          notifyDataSetChanged()
      }
+
+    fun submitList(list: List<Active>?): List<Content> {
+        if (list != null) {
+            mutableActives = list.toMutableList()
+        }
+        notifyDataSetChanged()
+        return mutableActives.toList()
+    }
 
 }
